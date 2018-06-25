@@ -1,7 +1,19 @@
 #include "ofApp.h"
 
 //--------------------------------------------------------------
-void drawButton(int x, int y, int r){
+ofApp::Button::Button(){
+  initButton(100, 100, 40);
+}
+
+//--------------------------------------------------------------
+void ofApp::Button::initButton(int set_x, int set_y, int set_r){
+  x = set_x;
+  y = set_y;
+  r = set_r;
+}
+
+//--------------------------------------------------------------
+void ofApp::Button::drawButton(){
   // 円の解像度の指定
   ofSetCircleResolution(64);
 
@@ -20,20 +32,24 @@ void drawButton(int x, int y, int r){
 //--------------------------------------------------------------
 void ofApp::setup(){
   ofBackground(30, 30, 30);
-  bx = 0;
-  by = 0;
-  br = 100;
+  //initButton(0, 0, 100);
 } 
 
 //--------------------------------------------------------------
 void ofApp::update(){
-  bx++;
-  by++;
+  b[0].x++;
+  b[0].y++;
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-  drawButton(bx, by, br);
+  b[0].drawButton();
+  for(int i=1; i<20; i++){
+    if(b[0].x > i*100){
+      b[i].initButton(i*100, i*100, 40);
+      b[i].drawButton();
+    }
+  }
 }
 
 //--------------------------------------------------------------

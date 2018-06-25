@@ -20,9 +20,19 @@ public:
   void windowResized(int w, int h);
   void dragEvent(ofDragInfo dragInfo);
   void gotMessage(ofMessage msg);
-		
-private:
-  int bx;
-  int by;
-  int br;
+
+  class Button{
+  
+  public:
+    Button();
+    int x;
+    int y;
+    int r;
+  
+    void initButton(int set_x, int set_y, int set_r);
+    void drawButton();
+  };
+
+  Button b[20];
 };
+
