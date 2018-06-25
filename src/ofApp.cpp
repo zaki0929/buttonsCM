@@ -6,7 +6,7 @@ void drawButton(int x, int y, int r){
   ofSetCircleResolution(64);
 
   // 本体の描画 
-  ofSetColor(200, 200, 200);
+  ofSetColor(220, 220, 220);
   ofCircle(x, y, r);
 
   // 穴の描画
