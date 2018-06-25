@@ -21,6 +21,9 @@ public:
   void dragEvent(ofDragInfo dragInfo);
   void gotMessage(ofMessage msg);
 
+  int center_x;
+  int center_y;
+
   class Button{
   
   public:
