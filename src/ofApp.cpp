@@ -46,7 +46,7 @@ void ofApp::updateMode1(){
     case 0:
       for(int i=0; i<5; i++){
         if(b[2].x < 1200){
-          b[i].x++;
+          b[i].x += 10;
         }else{
           mode1_flag = 1;
         }
@@ -65,7 +65,7 @@ void ofApp::updateMode1(){
     // ">>>>" 退場 
     case 1:
       for(int i=15; i<20; i++){
-        b[i].x++;
+        b[i].x += 10;
       }
       for(int i=1; i<=4; i++){
         if(b[17].x > i*300){
@@ -100,7 +100,7 @@ void ofApp::updateMode2(){
     case 0:
       for(int i=0; i<4; i++){
         if(b[mode2_step*4].x < 1160-(mode2_step*100)){
-          b[mode2_step*4+i].x++;
+          b[mode2_step*4+i].x += 10;
         }else{
           if(mode2_step < 4){
             mode2_step++;
@@ -115,7 +115,7 @@ void ofApp::updateMode2(){
     case 1:
       for(int i=0; i<4; i++){
         if(b[mode2_step2*4].x < 2000){
-          b[mode2_step2*4+i].x++;
+          b[mode2_step2*4+i].x += 10;
         }else{
           if(mode2_step2 < 4){
             mode2_step2++;
@@ -145,26 +145,26 @@ void ofApp::updateMode3(){
       for(int i=0; i<20; i++){
         // 右に移動
         if(b[i].y == center_y*2-mode3_r && b[i].x < center_x*2-mode3_r){
-          b[i].x++;
+          b[i].x += 10;
 	}
         // 上に移動
         if(b[i].x == center_x*2-mode3_r && b[i].y > mode3_r){
-          b[i].y--;
+          b[i].y -= 10;
 	}
         // 左に移動
         if(b[i].y == mode3_r && b[i].x > mode3_r){
-          b[i].x--;
+          b[i].x -= 10;
 	}
         // 下に移動
         if(b[i].x == mode3_r && b[i].y < center_y*2-mode3_r){
-          b[i].y++;
+          b[i].y += 10;
 	  if(b[i].y == center_y*2-mode3_r){    // 少しずらしてループから抜ける
-            b[i].y++;
+            b[i].y += 10;
           }
 	}
         // 下にフェードアウト
         if(b[i].x == mode3_r && b[i].y > center_y*2-mode3_r){
-          b[i].y++;
+          b[i].y += 10;
 	}
       }
       
@@ -178,6 +178,7 @@ void ofApp::updateMode3(){
 //--------------------------------------------------------------
 void ofApp::setup(){
   ofSetWindowShape(1920, 1080);
+  ofSetFrameRate(60);
   ofBackground(30, 30, 30);
 
   if(!XML.loadFile("settings.xml")){
