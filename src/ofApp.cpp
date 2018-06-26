@@ -180,8 +180,7 @@ void ofApp::setup(){
   ofSetWindowShape(1920, 1080);
   ofBackground(30, 30, 30);
 
-  if(XML.loadFile("settings.xml")){
-  }else{
+  if(!XML.loadFile("settings.xml")){
     ofLogError("Position file did not load!");
   }
   anime_num = XML.getValue("settings:anime_num", 3);
@@ -189,6 +188,8 @@ void ofApp::setup(){
   order.push_back(XML.getValue("settings:order2", 2));
   order.push_back(XML.getValue("settings:order3", 3));
   time = XML.getValue("settings:time", 30);
+
+  starttime = ofGetSeconds() + (ofGetMinutes()*60) + (ofGetHours()*360);
 
   center_x = int(ofGetWidth()/2);
   center_y = int(ofGetHeight()/2);
@@ -239,6 +240,16 @@ void ofApp::update(){
     mode3_flag = -1;
   }
 
+  nowtime = ofGetSeconds() + (ofGetMinutes()*60) + (ofGetHours()*360);
+  int diff = nowtime - starttime;
+
+  if(diff > time){
+    ofExit();
+    ofLogNotice("exit!!");
+  }
+
+  ofLogNotice("time: " + ofToString(diff));
+  ofLogNotice("fps: " + ofToString(ofGetFrameRate()));
 }
 
 //--------------------------------------------------------------

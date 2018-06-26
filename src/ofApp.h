@@ -30,6 +30,8 @@ public:
   int anime_num;
   int now;
   int time;
+  int nowtime;
+  int starttime;
   std::vector<int> order;
 
   int mode1_flag;
