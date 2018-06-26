@@ -347,7 +347,9 @@ obj/linux64/Release/src/main.o: \
  /home/parallels/of_v0.9.8_linux64/libs/openFrameworks/video/ofGstVideoPlayer.h \
  /home/parallels/of_v0.9.8_linux64/libs/openFrameworks/3d/ofCamera.h \
  /home/parallels/of_v0.9.8_linux64/libs/openFrameworks/3d/ofEasyCam.h \
- /home/parallels/of_v0.9.8_linux64/apps/myApps/buttonsCM/src/ofApp.h
+ /home/parallels/of_v0.9.8_linux64/apps/myApps/buttonsCM/src/ofApp.h \
+ /home/parallels/of_v0.9.8_linux64/addons/ofxXmlSettings/src/ofxXmlSettings.h \
+ /home/parallels/of_v0.9.8_linux64/addons/ofxXmlSettings/libs/tinyxml.h
 
 /home/parallels/of_v0.9.8_linux64/libs/openFrameworks/ofMain.h:
 
@@ -1078,3 +1080,7 @@ obj/linux64/Release/src/main.o: \
 /home/parallels/of_v0.9.8_linux64/libs/openFrameworks/3d/ofEasyCam.h:
 
 /home/parallels/of_v0.9.8_linux64/apps/myApps/buttonsCM/src/ofApp.h:
+
+/home/parallels/of_v0.9.8_linux64/addons/ofxXmlSettings/src/ofxXmlSettings.h:
+
+/home/parallels/of_v0.9.8_linux64/addons/ofxXmlSettings/libs/tinyxml.h:

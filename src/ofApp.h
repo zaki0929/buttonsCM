@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxXmlSettings.h"
 #include <vector> 
 
 class ofApp : public ofBaseApp{
@@ -22,10 +23,13 @@ public:
   void dragEvent(ofDragInfo dragInfo);
   void gotMessage(ofMessage msg);
 
+  ofxXmlSettings XML;
+
   int center_x;
   int center_y;
   int anime_num;
   int now;
+  int time;
   std::vector<int> order;
 
   int mode1_flag;

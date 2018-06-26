@@ -180,19 +180,24 @@ void ofApp::setup(){
   ofSetWindowShape(1920, 1080);
   ofBackground(30, 30, 30);
 
+  if(XML.loadFile("settings.xml")){
+  }else{
+    ofLogError("Position file did not load!");
+  }
+  anime_num = XML.getValue("settings:anime_num", 3);
+  order.push_back(XML.getValue("settings:order1", 1));
+  order.push_back(XML.getValue("settings:order2", 2));
+  order.push_back(XML.getValue("settings:order3", 3));
+  time = XML.getValue("settings:time", 30);
+
   center_x = int(ofGetWidth()/2);
   center_y = int(ofGetHeight()/2);
 
   now = 0;
-  anime_num = 3;
 
   mode1_flag = -1;
   mode2_flag = -1;
   mode3_flag = -1;
-
-  order.push_back(3);
-  order.push_back(2);
-  order.push_back(1);
 } 
 
 //--------------------------------------------------------------
