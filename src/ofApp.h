@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include <vector> 
 
 class ofApp : public ofBaseApp{
 
@@ -23,16 +24,26 @@ public:
 
   int center_x;
   int center_y;
+  int anime_num;
+  int now;
+  std::vector<int> order;
 
   int mode1_flag;
+
   int mode2_flag;
   int mode2_step;
   int mode2_step2;
+
+  int mode3_flag;
+  int mode3_step;
+  int mode3_r;
   
   void setupMode1();
   void setupMode2();
+  void setupMode3();
   void updateMode1();
   void updateMode2();
+  void updateMode3();
 
   class Button{
   

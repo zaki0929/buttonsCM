@@ -120,7 +120,7 @@ void ofApp::updateMode2(){
           if(mode2_step2 < 4){
             mode2_step2++;
           }else{
-            mode2_flag = 2;
+            mode2_flag = 2;    // mode2 終了 
           }
         }
       }
@@ -129,21 +129,111 @@ void ofApp::updateMode2(){
 }
 
 //--------------------------------------------------------------
+void ofApp::setupMode3(){
+  mode3_flag = 0;
+  mode3_step = 0;
+  mode3_r = 200;
+  for(int i=0; i<20; i++){
+    b[i].initButton(-mode3_r-(i*500), center_y*2-mode3_r, mode3_r);
+  }
+}
+
+//--------------------------------------------------------------
+void ofApp::updateMode3(){
+  switch(mode3_flag){
+    case 0:
+      for(int i=0; i<20; i++){
+        // 右に移動
+        if(b[i].y == center_y*2-mode3_r && b[i].x < center_x*2-mode3_r){
+          b[i].x++;
+	}
+        // 上に移動
+        if(b[i].x == center_x*2-mode3_r && b[i].y > mode3_r){
+          b[i].y--;
+	}
+        // 左に移動
+        if(b[i].y == mode3_r && b[i].x > mode3_r){
+          b[i].x--;
+	}
+        // 下に移動
+        if(b[i].x == mode3_r && b[i].y < center_y*2-mode3_r){
+          b[i].y++;
+	  if(b[i].y == center_y*2-mode3_r){    // 少しずらしてループから抜ける
+            b[i].y++;
+          }
+	}
+        // 下にフェードアウト
+        if(b[i].x == mode3_r && b[i].y > center_y*2-mode3_r){
+          b[i].y++;
+	}
+      }
+      
+      if(b[19].y > center_y*2+mode3_r){
+        mode3_flag = 2;    // mode3 終了 
+      }
+      break;
+  }
+}
+
+//--------------------------------------------------------------
 void ofApp::setup(){
+  ofSetWindowShape(1920, 1080);
+  ofBackground(30, 30, 30);
+
   center_x = int(ofGetWidth()/2);
   center_y = int(ofGetHeight()/2);
 
-  ofBackground(30, 30, 30);
-  
-//  setupMode1();
-  setupMode2();
-  
+  now = 0;
+  anime_num = 3;
+
+  mode1_flag = -1;
+  mode2_flag = -1;
+  mode3_flag = -1;
+
+  order.push_back(3);
+  order.push_back(2);
+  order.push_back(1);
 } 
 
 //--------------------------------------------------------------
 void ofApp::update(){
-//  updateMode1();
-  updateMode2();
+  if(order[now] == 1){
+    if(mode1_flag == -1){
+      setupMode1();
+    }
+    updateMode1();
+    if(mode1_flag == 2){
+      now++;
+    }
+  }
+
+  if(order[now] == 2){
+    if(mode2_flag == -1){
+      setupMode2();
+    }
+    updateMode2();
+    if(mode2_flag == 2){
+      now++;
+    }
+  }
+
+  if(order[now] == 3){
+    if(mode3_flag == -1){
+      setupMode3();
+    }
+    updateMode3();
+    if(mode3_flag == 2){
+      now++;
+    }
+  }
+
+  if(now == anime_num){
+    now = 0;
+    mode1_flag = -1;
+    mode2_flag = -1;
+    mode3_flag = -1;
+  }
+
 }
 
 //--------------------------------------------------------------
