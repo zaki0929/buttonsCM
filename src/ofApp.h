@@ -24,6 +24,10 @@ public:
   int center_x;
   int center_y;
 
+  int mode1_flag;
+  
+  void mode1Update();
+
   class Button{
   
   public:
