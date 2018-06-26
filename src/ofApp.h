@@ -25,8 +25,14 @@ public:
   int center_y;
 
   int mode1_flag;
+  int mode2_flag;
+  int mode2_step;
+  int mode2_step2;
   
-  void mode1Update();
+  void setupMode1();
+  void setupMode2();
+  void updateMode1();
+  void updateMode2();
 
   class Button{
   
@@ -35,7 +41,6 @@ public:
     int x;
     int y;
     int r;
-  
     void initButton(int set_x, int set_y, int set_r);
     void drawButton();
   };

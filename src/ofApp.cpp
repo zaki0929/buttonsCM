@@ -30,8 +30,19 @@ void ofApp::Button::drawButton(){
 } 
 
 //--------------------------------------------------------------
-void ofApp::mode1Update(){
+void ofApp::setupMode1(){
+  mode1_flag = 0;
+  b[0].initButton(-300, center_y-160, 40);
+  b[1].initButton(-200, center_y-80, 40);
+  b[2].initButton(-100, center_y, 40);
+  b[3].initButton(-200, center_y+80, 40);
+  b[4].initButton(-300, center_y+160, 40);
+}
+
+//--------------------------------------------------------------
+void ofApp::updateMode1(){
   switch(mode1_flag){
+    // ">>>>" 入場
     case 0:
       for(int i=0; i<5; i++){
         if(b[2].x < 1200){
@@ -51,6 +62,7 @@ void ofApp::mode1Update(){
       }
       break;
 
+    // ">>>>" 退場 
     case 1:
       for(int i=15; i<20; i++){
         b[i].x++;
@@ -63,11 +75,57 @@ void ofApp::mode1Update(){
         }
       }
       if(b[17].x > 2000){
-        mode1_flag = 2;
+        mode1_flag = 2;    // mode1 終了 
       }
       break;
   }
+}
 
+//--------------------------------------------------------------
+void ofApp::setupMode2(){
+  mode2_flag = 0;
+  mode2_step = 0;
+  mode2_step2 = 0;
+  for(int j=0; j<5; j++){
+    for(int i=0; i<4; i++){
+      b[i+(j*4)].initButton(-100, center_y-120+(i*100), 40);
+    }
+  }
+}
+
+//--------------------------------------------------------------
+void ofApp::updateMode2(){
+  switch(mode2_flag){
+    // "|||||" 入場
+    case 0:
+      for(int i=0; i<4; i++){
+        if(b[mode2_step*4].x < 1160-(mode2_step*100)){
+          b[mode2_step*4+i].x++;
+        }else{
+          if(mode2_step < 4){
+            mode2_step++;
+          }else{
+            mode2_flag = 1;
+          }
+        }
+      }
+      break;
+
+    // "|||||" 退場 
+    case 1:
+      for(int i=0; i<4; i++){
+        if(b[mode2_step2*4].x < 2000){
+          b[mode2_step2*4+i].x++;
+        }else{
+          if(mode2_step2 < 4){
+            mode2_step2++;
+          }else{
+            mode2_flag = 2;
+          }
+        }
+      }
+      break;
+  }
 }
 
 //--------------------------------------------------------------
@@ -77,27 +135,22 @@ void ofApp::setup(){
 
   ofBackground(30, 30, 30);
   
-  mode1_flag = 0;
-  b[0].initButton(-200, center_y-160, 40);
-  b[1].initButton(-100, center_y-80, 40);
-  b[2].initButton(0, center_y, 40);
-  b[3].initButton(-100, center_y+80, 40);
-  b[4].initButton(-200, center_y+160, 40);
+//  setupMode1();
+  setupMode2();
   
 } 
 
 //--------------------------------------------------------------
 void ofApp::update(){
-   mode1Update();
+//  updateMode1();
+  updateMode2();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-  
   for(int i=0; i<20; i++){
     b[i].drawButton();
   }
-
 }
 
 //--------------------------------------------------------------
