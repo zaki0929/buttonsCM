@@ -30,6 +30,7 @@ public:
   int anime_num;
   int now;
   int time;
+  int style;
   int nowtime;
   int starttime;
   std::vector<int> order;
@@ -59,7 +60,7 @@ public:
     int y;
     int r;
     void initButton(int set_x, int set_y, int set_r);
-    void drawButton();
+    void drawButton(int red, int green, int blue);
   };
 
   Button b[20];

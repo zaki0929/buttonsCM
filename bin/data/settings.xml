@@ -4,4 +4,5 @@
   <order2>2</order2>
   <order3>1</order3>
   <time>120</time>
+  <style>1</style> <!-- 0: mono, 1: color -->
 </settings>

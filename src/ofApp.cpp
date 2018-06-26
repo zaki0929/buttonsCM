@@ -13,12 +13,12 @@ void ofApp::Button::initButton(int set_x, int set_y, int set_r){
 }
 
 //--------------------------------------------------------------
-void ofApp::Button::drawButton(){
+void ofApp::Button::drawButton(int red, int green, int blue){
   // 円の解像度の指定
   ofSetCircleResolution(64);
 
   // 本体の描画 
-  ofSetColor(220, 220, 220);
+  ofSetColor(red, green, blue);
   ofCircle(x, y, r);
 
   // 穴の描画
@@ -188,6 +188,7 @@ void ofApp::setup(){
   order.push_back(XML.getValue("settings:order2", 2));
   order.push_back(XML.getValue("settings:order3", 3));
   time = XML.getValue("settings:time", 30);
+  style = XML.getValue("settings:style", 0);
 
   starttime = ofGetSeconds() + (ofGetMinutes()*60) + (ofGetHours()*360);
 
@@ -254,9 +255,23 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-  for(int i=0; i<20; i++){
-    b[i].drawButton();
+  // style: mono
+  if(style == 0){
+    for(int i=0; i<20; i++){
+      b[i].drawButton(220, 220, 220);
+    }
   }
+
+  // style: color 
+  if(style == 1){
+    for(int i=0; i<5; i++){
+      b[i*4].drawButton(41, 128, 185);
+      b[1+i*4].drawButton(243, 156, 18);
+      b[2+i*4].drawButton(26, 188, 156);
+      b[3+i*4].drawButton(155, 89, 182);
+    }
+  }
+
 }
 
 //--------------------------------------------------------------
